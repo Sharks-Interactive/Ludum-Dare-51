@@ -35,6 +35,14 @@ namespace Chrio.World
             }
         }
 
+        public struct AirPlane
+        {
+            public GameObject gameObject;
+            public int FuelRemaining;
+            public int FlightLevel;
+            public int Speed;
+        }
+
         public class Game
         {
             public bool Running;
@@ -42,12 +50,15 @@ namespace Chrio.World
             public CameraShake Shake;
             public Chrio.Player.Player Player;
 
-
+            public Dictionary<System.Guid, AirPlane> Planes;
+            public Dictionary<string, System.Guid> Callsigns;
             public Entities Entities;
 
             public Game()
             {
                 Entities = new Entities();
+                Callsigns = new();
+                Planes = new();
 
                 Running = true;
                 MainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
