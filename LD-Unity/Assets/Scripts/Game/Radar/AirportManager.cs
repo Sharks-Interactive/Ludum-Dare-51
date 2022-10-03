@@ -30,4 +30,16 @@ public class AirportManager : SharksBehaviour
 
     public bool IsOccupied(string Callsign) => Occupied[AirportsMap.Keys.ToList().IndexOf(Callsign)];
     public bool IsOccupied(int Index) => Occupied[Index];
+
+    public void OccupyAirportFor(string Callsign)
+    {
+        Occupied[AirportsMap.Keys.ToList().IndexOf(Callsign)] = true;
+        StartCoroutine(FreeAirport(AirportsMap.Keys.ToList().IndexOf(Callsign)));
+    }
+
+    public IEnumerator FreeAirport(int Index)
+    {
+        yield return new WaitForSeconds(15);
+        Occupied[Index] = false;
+    }
 }

@@ -57,6 +57,7 @@ namespace Chrio.World
 
             public int Speed = 1;
             public AirportManager Airport;
+            public ScoreKeeper Score;
 
             public Game()
             {
