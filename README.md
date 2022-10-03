@@ -11,6 +11,7 @@ We hope you'll enjoy it as much as we enjoyed making it.
 ```
 Contributors:  
 - Owen Silva
+- Fiona Thornton
 - Kai Wilson
 - Henry Dean
 - Andy Robinson

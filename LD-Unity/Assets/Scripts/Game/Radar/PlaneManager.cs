@@ -16,7 +16,7 @@ public class PlaneManager : SharksBehaviour
 
     public void GeneratePlanes()
     {
-        for (int i = 0; i < Random.Range(3, 12); i++)
+        for (int i = 0; i < 15; i++)
         {
             (System.Guid, string) _identity = CallsignHandler.RegisterNewCallsign(GlobalState);
 
