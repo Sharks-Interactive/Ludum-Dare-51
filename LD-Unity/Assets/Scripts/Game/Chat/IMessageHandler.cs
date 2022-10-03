@@ -1,18 +1,9 @@
+using Chrio.World;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IMessageHandler : MonoBehaviour
+public interface IMessageHandler
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    string HandleMessage(Game_State.State state, string message);
 }

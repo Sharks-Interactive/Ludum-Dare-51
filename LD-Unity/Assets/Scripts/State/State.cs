@@ -35,12 +35,13 @@ namespace Chrio.World
             }
         }
 
-        public struct AirPlane
+        public class AirPlane
         {
             public GameObject gameObject;
             public int FuelRemaining;
             public int FlightLevel;
             public int Speed;
+            public string Callsign;
         }
 
         public class Game
@@ -53,6 +54,9 @@ namespace Chrio.World
             public Dictionary<System.Guid, AirPlane> Planes;
             public Dictionary<string, System.Guid> Callsigns;
             public Entities Entities;
+
+            public int Speed = 1;
+            public AirportManager Airport;
 
             public Game()
             {

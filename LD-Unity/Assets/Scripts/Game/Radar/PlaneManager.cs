@@ -16,25 +16,45 @@ public class PlaneManager : SharksBehaviour
 
     public void GeneratePlanes()
     {
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < Random.Range(3, 12); i++)
+        {
+            (System.Guid, string) _identity = CallsignHandler.RegisterNewCallsign(GlobalState);
+
             GlobalState.Game.Planes.Add(
-                CallsignHandler.RegisterNewCallsign(GlobalState),
-                CreatePlane()
+                _identity.Item1,
+                CreatePlane(_identity.Item2)
             );
+        }
     }
 
-    public AirPlane CreatePlane()
+    public AirPlane CreatePlane(string callsign)
     {
         GameObject Plane = Instantiate(
-            Resources.Load<GameObject>("Object/Plane"), 
-            ExtraFunctions.RandomPointInsideCircle(transform.position, 500),
+            Resources.Load<GameObject>("Objects/Plane"), 
+            ExtraFunctions.RandomPointInsideDonut(transform.position, 370, 60),
             Quaternion.identity,
             transform
         );
 
-        return new AirPlane()
+        AirplaneBehaviour _behaviour = Plane.GetComponent<AirplaneBehaviour>();
+        _behaviour.Plane = new AirPlane()
         {
-            gameObject = Plane
+            gameObject = Plane,
+            Callsign = callsign,
+            FlightLevel = Random.Range(10, 40),
+            Speed = Random.Range(165, 220),
+            FuelRemaining = Random.Range(590, 1230)
         };
+
+        _behaviour.OnLoad(GlobalState, () => { });
+
+        return _behaviour.Plane;
     }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawSphere(transform.position, 370);
+    }
+#endif
 }
